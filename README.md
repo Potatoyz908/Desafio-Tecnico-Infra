@@ -113,6 +113,31 @@ nano .env  # ou use seu editor preferido
 
 ### 3. Subir o Ambiente
 
+#### Executar o Script `setup.sh`
+
+O script `setup.sh` realiza automaticamente a configuração do ambiente, criando os arquivos necessários, baixando as imagens Docker e subindo os containers. Execute o script da seguinte maneira:
+
+```bash
+# Torne o script executável
+chmod +x setup.sh
+
+# Execute o script
+./setup.sh
+```
+
+#### O que o `setup.sh` faz:
+
+* **Verifica as dependências**: Garante que Docker e Docker Compose estão instalados.
+* **Configura o `.env`**: Cria o arquivo `.env` com chaves secretas geradas para Airflow e Superset.
+* **Cria diretórios necessários**: Garante que os diretórios `airflow/dags`, `postgres/init`, e `evidencias` estão presentes.
+* **Inicia o ambiente**: Faz o download das imagens necessárias e sobe os containers com Docker Compose.
+* **Verifica a saúde dos serviços**: Aguarda até que os serviços (Airflow, Superset, Postgres) estejam totalmente inicializados.
+* **Exibe informações de acesso**: Mostra as URLs para acessar os serviços e as credenciais de login.
+
+Após a execução do script, o ambiente estará pronto para ser usado!
+
+#### Se preferir, suba manualmente os containers:
+
 ```bash
 # Subir todos os serviços
 docker-compose up -d
